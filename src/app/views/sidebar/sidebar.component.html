@@ -17,12 +17,13 @@
             <span class="nav-link-text ms-1">Dashboard</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="./pages/sign-in.html">
+        <li class="nav-item" *ngFor="let category of categories" (click)="CategorySelected(category)">
+          <a class="nav-link text-white " [class.bg-gradient-primary]="category === categorySelected" style="cursor: pointer;;">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">login</i>
+              <i class="material-icons opacity-10">minimize</i>
+              
             </div>
-            <span class="nav-link-text ms-1">Sign In</span>
+            <span class="nav-link-text ms-1">{{ category.title }}</span>
           </a>
         </li>
       </ul>
