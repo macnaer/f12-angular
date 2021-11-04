@@ -32,8 +32,7 @@ export class MainComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
+    this.addTableObjects();
   }
 
   private refreshTable() {

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Seeder } from '../data/Initializer';
 import { BehaviorSubject, Subject } from 'rxjs';
+import { Category } from '../models/Category';
 
 
 @Injectable({
@@ -13,11 +14,17 @@ export class DataService {
 
   constructor() { }
 
-  getCategories() {
+  getCategories(): Category[] {
     return Seeder.categories;
   }
 
   getTasks() {
     this.tasks.next(Seeder.tasks);
+  }
+
+  sortTaskByCarogory(category: Category): void {
+    const sortedTasks = Seeder.tasks.filter(task => task.category === category);
+    console.log("sortedTasks ", sortedTasks);
+    this.tasks.next(sortedTasks);
   }
 }

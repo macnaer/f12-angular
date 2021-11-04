@@ -18,8 +18,10 @@ export class SidebarComponent implements OnInit {
     this.categories = this.appDataService.getCategories();
   }
 
-  CategorySelected(category: Category) {
+  sortCategorySelected(category: Category): void {
     this.categorySelected = category;
+    this.appDataService.sortTaskByCarogory(category);
+
   }
 
 }
