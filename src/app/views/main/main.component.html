@@ -146,6 +146,12 @@
           <div class="card-body px-0 pb-2">
             <div class="table-responsive">
               <div class="mat-elevation-z8">
+                <mat-form-field appearance="standard">
+                  <mat-label>Filter</mat-label>
+                  <!-- <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" [matAotocomplete]="auto" > -->
+                   <input matInput placeholder="Filter">
+                </mat-form-field>
+                
                 <table mat-table [dataSource]="dataSource" matSort>
 
                   <!-- Position Column -->
@@ -160,12 +166,6 @@
                     <td mat-cell *matCellDef="let task"> {{task.title}} </td>
                   </ng-container>
 
-                  <!-- Weight Column -->
-                  <ng-container matColumnDef="status">
-                    <th mat-header-cell *matHeaderCellDef> Status </th>
-                    <td mat-cell *matCellDef="let task"> {{task.status}} </td>
-                  </ng-container>
-
                   <!-- Symbol Column -->
                   <ng-container matColumnDef="category">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
@@ -176,6 +176,14 @@
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
                     <td mat-cell *matCellDef="let task"> {{task.date ? (task.date | date:"medium") : "Not deadline"}} </td>
                   </ng-container>
+
+                     <!-- Weight Column -->
+                     <ng-container matColumnDef="status">
+                      <th mat-header-cell *matHeaderCellDef> Status </th>
+                      <td mat-cell *matCellDef="let task"> 
+                        <mat-checkbox [checked]="task.status" (click)="switchStatus(task)"></mat-checkbox>  
+                      </td>
+                    </ng-container>
 
                   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

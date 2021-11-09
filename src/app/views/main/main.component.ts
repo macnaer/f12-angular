@@ -14,7 +14,7 @@ export class MainComponent implements OnInit {
 
   // @ts-ignore
   dataSource: MatTableDataSource<Task>;
-  displayedColumns: string[] = ['id', 'title', 'status', 'category', "date"];
+  displayedColumns: string[] = ['id', 'title', 'category', "date", 'status'];
 
   // @ts-ignore
   @ViewChild(MatSort, { static: false }) private sort: MatSort;
@@ -36,6 +36,10 @@ export class MainComponent implements OnInit {
 
   ngAfterViewInit() {
     this.addTableObjects();
+  }
+
+  switchStatus(task: Task): void{
+    task.status = !task.status;
   }
 
   private refreshTable() {
