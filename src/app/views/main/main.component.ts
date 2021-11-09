@@ -15,20 +15,23 @@ export class MainComponent implements OnInit {
   // @ts-ignore
   dataSource: MatTableDataSource<Task>;
   displayedColumns: string[] = ['id', 'title', 'status', 'category', "date"];
-  tasks: Task[] = [];
 
   // @ts-ignore
   @ViewChild(MatSort, { static: false }) private sort: MatSort;
   // @ts-ignore
   @ViewChild(MatPaginator, { static: false }) private paginator: MatPaginator;
 
+  // @ts-ignore
+  tasks: Task[];
+
 
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
-    this.dataService.tasks.subscribe(tasks => this.tasks = tasks);
+    this.dataService.tasks.subscribe(task => this.tasks = task); 
     this.dataSource = new MatTableDataSource();
     this.refreshTable();
+    console.log("Data source", this.dataSource);
   }
 
   ngAfterViewInit() {

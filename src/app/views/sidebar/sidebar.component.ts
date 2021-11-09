@@ -15,7 +15,7 @@ export class SidebarComponent implements OnInit {
   constructor(private appDataService: DataService) { }
 
   ngOnInit(): void {
-    this.categories = this.appDataService.getCategories();
+    this.appDataService.categories.subscribe(categories => this.categories = categories);
   }
 
   sortCategorySelected(category: Category): void {
