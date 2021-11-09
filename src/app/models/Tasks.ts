@@ -7,7 +7,7 @@ export class Task{
     category?: Category;
     date?: Date
 
-    constructor( id :number,  title: string,  status: boolean, category?: Category, date?: Date){
+    constructor( id :number,  title: string,  status: boolean, category: Category, date: Date){
 
         this.id = id;
         this.title = title;

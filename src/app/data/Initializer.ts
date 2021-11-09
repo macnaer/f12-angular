@@ -2,11 +2,12 @@ import { Category } from "../models/Category";
 import { Task } from "../models/Tasks";
 
 export class Seeder{
-    static categories: Category[] = [
+    static categories: Category[]  = [
         { id: 1, title:  "Спорт" },
         { id: 2, title:  "Робота" },
         { id: 3, title:  "Навчання" },
     ];
+    
 
     static tasks: Task[] = [
         {

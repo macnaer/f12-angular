@@ -21,17 +21,17 @@ export class MainComponent implements OnInit {
   // @ts-ignore
   @ViewChild(MatPaginator, { static: false }) private paginator: MatPaginator;
 
-  // @ts-ignore
-  tasks: Task[];
+
+  tasks: Task[] = [];
 
 
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
-    this.dataService.tasks.subscribe(task => this.tasks = task); 
+    this.dataService.tasks.subscribe(tasks => this.tasks = tasks);
     this.dataSource = new MatTableDataSource();
+    this.dataService.tasks.subscribe(tasks => this.dataSource.data = tasks);
     this.refreshTable();
-    console.log("Data source", this.dataSource);
   }
 
   ngAfterViewInit() {
