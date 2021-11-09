@@ -146,10 +146,15 @@
           <div class="card-body px-0 pb-2">
             <div class="table-responsive">
               <div class="mat-elevation-z8">
-                <mat-form-field appearance="standard">
+                <mat-form-field class="example-full-width" appearance="fill">
                   <mat-label>Filter</mat-label>
-                  <!-- <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" [matAotocomplete]="auto" > -->
-                   <input matInput placeholder="Filter">
+                  <input type="text" aria-label="Filter" matInput [formControl]="myControl"
+                    [matAutocomplete]="auto">
+                  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                      {{option}}
+                    </mat-option>
+                  </mat-autocomplete>
                 </mat-form-field>
                 
                 <table mat-table [dataSource]="dataSource" matSort>

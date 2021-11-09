@@ -19,6 +19,11 @@ export class DataService {
     return Seeder.categories;
   }
 
+  setSearchFilter(searchFilter: string): void {
+    const sortedTasks = Seeder.tasks.filter(task => task.title.toLowerCase().includes(searchFilter));
+    this.tasks.next(sortedTasks);
+  }
+
   getTasks() {
     this.tasks.next(Seeder.tasks);
   }

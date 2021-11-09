@@ -8,7 +8,6 @@ export class Task{
     date?: Date
 
     constructor( id :number,  title: string,  status: boolean, category: Category, date: Date){
-
         this.id = id;
         this.title = title;
         this.status = status;

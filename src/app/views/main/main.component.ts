@@ -4,6 +4,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { Task } from 'src/app/models/Tasks';
 import { DataService } from 'src/app/services/data-service.service';
+import { FormControl } from '@angular/forms';
+import { map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-main',
@@ -24,14 +26,38 @@ export class MainComponent implements OnInit {
 
   tasks: Task[] = [];
 
+  myControl = new FormControl();
+  option: string[] = [];
+  //@ts-ignore
+  filteredOptions: Observable<string[]>;
+
 
   constructor(private dataService: DataService) { }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    let values: string[] = [];
+
+    this.dataSource.data.map(x => {
+      values.push(x.title);
+    })
+
+    this.dataService.setSearchFilter(filterValue);
+
+    return values.filter(option => option.toLowerCase().includes(filterValue));
+  }
 
   ngOnInit(): void {
     this.dataService.tasks.subscribe(tasks => this.tasks = tasks);
     this.dataSource = new MatTableDataSource();
     this.dataService.tasks.subscribe(tasks => this.dataSource.data = tasks);
     this.refreshTable();
+
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value))
+    );
   }
 
   ngAfterViewInit() {
