@@ -29,5 +29,5 @@
 </div>
 <mat-dialog-actions>
     <button mat-button (click)="close()">Close</button>
-    <button mat-button >Create</button>
+    <button mat-button [mat-dialog-close]="data.task" cdkFocusInitial>Create</button>
 </mat-dialog-actions>

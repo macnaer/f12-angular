@@ -44,7 +44,7 @@ export class AddDialogComponent implements OnInit {
   switchStatus(){
     this.data.task.status = !this.data.task.status;
   }
-  close(){
+  close(): void{
     this.dialogRef.close();
   }
 

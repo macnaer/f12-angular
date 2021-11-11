@@ -28,6 +28,12 @@ export class DataService {
     this.tasks.next(Seeder.tasks);
   }
 
+  addTask(task:Task): void{
+    const tmpTasks = Seeder.tasks;
+    tmpTasks.unshift(task);
+    this.tasks.next(tmpTasks);
+  }
+
   sortTaskByCarogory(category: Category): void {
     const sortedTasks = Seeder.tasks.filter(task => task.category == category);
     this.tasks.next(sortedTasks);

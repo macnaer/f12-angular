@@ -8,6 +8,7 @@ import { FormControl } from '@angular/forms';
 import { map, startWith } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { AddDialogComponent } from "../..//add-dialog/add-dialog.component";
+import { Category } from 'src/app/models/Category';
 
 @Component({
   selector: 'app-main',
@@ -43,7 +44,29 @@ export class MainComponent implements OnInit {
       width: '460px',
       data: {task:task}
     })
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log("Result => ", result)
+      if (result == undefined){
+        return;
+      }else{
+        const Id = this.tasks[this.tasks.length -1].id + 1;
+        const categories = this.dataService.getCategories();
+        //@ts-ignore
+        let category = new Category();
+        
+        for(let i = 0; i < categories.length; i++){
+          if(categories[i].title == result.category){
+            category = categories[i];
+          }
+        }
+        let task = new Task(Id, result.title, result.status, category, result.date)
+        this.dataService.addTask(task);
+      }
+    })
   }
+
+  
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
