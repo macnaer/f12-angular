@@ -6,6 +6,8 @@ import { Task } from 'src/app/models/Tasks';
 import { DataService } from 'src/app/services/data-service.service';
 import { FormControl } from '@angular/forms';
 import { map, startWith } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
+import { AddDialogComponent } from "../..//add-dialog/add-dialog.component";
 
 @Component({
   selector: 'app-main',
@@ -30,9 +32,18 @@ export class MainComponent implements OnInit {
   option: string[] = [];
   //@ts-ignore
   filteredOptions: Observable<string[]>;
+ 
 
+  constructor(private dataService: DataService, public dialog: MatDialog) { }
 
-  constructor(private dataService: DataService) { }
+  openDialog(): void{
+    //@ts-ignore
+    let task = new Task();
+    const dialogRef = this.dialog.open(AddDialogComponent, {
+      width: '460px',
+      data: {task:task}
+    })
+  }
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();

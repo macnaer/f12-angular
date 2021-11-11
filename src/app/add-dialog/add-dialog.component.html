@@ -1,0 +1,33 @@
+<div>Add new task</div>
+<div mat-dialog-component>
+    <mat-form-field appearance="fill">
+        <mat-label>Title</mat-label>
+        <input matInput [(ngModel)]="data.task.title">
+    </mat-form-field>
+</div>
+<div mat-dialog-component>
+    <mat-form-field appearance="fill">
+        <mat-label>Deadline</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="data.task.date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+</div>
+<div mat-dialog-component>
+    <mat-form-field appearance="fill">
+        <mat-label>Choose category</mat-label>
+        <input type="text" [matAutocomplete]="auto" [(ngModel)]="data.task.category" matInput [formControl]="formControl" >
+        <mat-autocomplete autoActiveFirstoption #auto="matAutocomplete">
+            <mat-option *ngFor="let option of categories | async" [value]="option">
+                {{option}}
+              </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+</div>
+<div>
+    <mat-checkbox [checked]="data.task.status" (change)="switchStatus()">Status</mat-checkbox>
+</div>
+<mat-dialog-actions>
+    <button mat-button (click)="close()">Close</button>
+    <button mat-button >Create</button>
+</mat-dialog-actions>

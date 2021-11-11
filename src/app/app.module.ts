@@ -15,18 +15,24 @@ import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddDialogComponent } from './add-dialog/add-dialog.component';
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    SidebarComponent
+    SidebarComponent,
+    AddDialogComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
     MatPaginatorModule,
     MatTableModule,
     MatSortModule,
@@ -34,8 +40,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatAutocompleteModule,
     MatInputModule,
     MatFormFieldModule,
-    FormsModule,
     ReactiveFormsModule,
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]
